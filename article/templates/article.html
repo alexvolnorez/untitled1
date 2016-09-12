@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block article %}
+<h6> {{ article.article_date }}</h6>
+    <div class="alex">
+        <div class="name_article"> <h2>{{ article.article_title }}</h2></div>
+        <div class="date">  <h6 align="right"> {{ article.article_date }}</h6> </div>
+    </div>
+
+
+
+<p align="center">{{ article.article_text }}</p>
+<hr>
+    <div class="large-offset-1 large-8 columns"
+<p>Комменгарии</p>
+{% for comment in comments %}
+    <p>{{ comment.comments_text }}</p>
+{% endfor %}
+    <form action="/articles/addcomment/{{ article.id }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="button" value="Добавить коммент">
+    </form>
+    </div>
+{% endblock %}
